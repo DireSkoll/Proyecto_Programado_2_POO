@@ -13,6 +13,9 @@ public class PruebaBaraja {
     public static void main(String args[]){
         Baraja miBaraja = new Baraja(false);
         miBaraja.imprimirBaraja(24);
+        
+        Baraja miBaraja2 = new Baraja(true);
+        miBaraja2.imprimirBaraja(24);
     }
     
 }
