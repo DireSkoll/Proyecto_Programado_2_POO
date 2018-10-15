@@ -48,6 +48,7 @@ public class PruebaJugador {
                 if (respuesta.compareToIgnoreCase("P") == 0){
                     //Reparte la siguiente carta en el mazo
                     jugador1Terminado = !jugador1.agregarCarta(baraja1.repartirSiguienteCarta());
+                    jugador1.imprimirMano(true);
                 } else{
                     jugador1Terminado = true;
                 }
@@ -61,6 +62,7 @@ public class PruebaJugador {
                 if (respuesta.compareToIgnoreCase("P") == 0){
                     //Reparte la siguiente carta en el mazo
                     jugador2Terminado = !jugador2.agregarCarta(baraja1.repartirSiguienteCarta());
+                    jugador2.imprimirMano(true);
                 } else{
                     jugador2Terminado = true;
                 }
@@ -74,10 +76,36 @@ public class PruebaJugador {
                 if (respuesta.compareToIgnoreCase("P") == 0){
                     //Reparte la siguiente carta en el mazo
                     jugador3Terminado = !jugador3.agregarCarta(baraja1.repartirSiguienteCarta());
+                    jugador3.imprimirMano(true);
                 } else{
                     jugador3Terminado = true;
                 }
             }
+            
+            System.out.println();
+        }
+        
+        //Cierre del scanner
+        sc.close();
+        
+        jugador1.imprimirMano(true);
+        jugador2.imprimirMano(true);
+        jugador3.imprimirMano(true);
+        
+        int sumaJugador1 = jugador1.conseguirSumaMano();
+        int sumaJugador2 = jugador2.conseguirSumaMano();
+        int sumaJugador3 = jugador3.conseguirSumaMano();
+        
+        if (sumaJugador1 > sumaJugador2 && sumaJugador1 > sumaJugador3 && sumaJugador1 <= 21){
+            System.out.println("El jugador " + jugador1.getNombre() + " ha ganado con una suma de: " + sumaJugador1 + "!");
+        }
+        
+        if (sumaJugador2 > sumaJugador1 && sumaJugador2 > sumaJugador3 && sumaJugador2 <= 21){
+            System.out.println("El jugador " + jugador2.getNombre() + " ha ganado con una suma de: " + sumaJugador2 + "!");
+        }
+        
+        if (sumaJugador3 > sumaJugador1 && sumaJugador3 > sumaJugador2 && sumaJugador3 <= 21){
+            System.out.println("El jugador " + jugador3.getNombre() + " ha ganado con una suma de: " + sumaJugador3 + "!");
         }
     }
     
