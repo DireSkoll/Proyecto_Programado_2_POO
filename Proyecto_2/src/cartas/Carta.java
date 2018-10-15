@@ -13,7 +13,13 @@ public class Carta {
     
     public Carta(Categoria pCategoria, int pNumero){
         setMiCategoria(pCategoria);
-        setMiNumero(pNumero);
+        
+        if (pNumero >= 1 && pNumero <= 13) {
+            setMiNumero(pNumero);
+        } else {
+            System.err.println(pNumero + " no es un numero valido para una carta");
+            System.exit(1);
+        }
     }
 
     public Categoria getMiCategoria() {
