@@ -12,10 +12,10 @@ public class PruebaBaraja {
     
     public static void main(String args[]){
         Baraja miBaraja = new Baraja(false);
-        miBaraja.imprimirBaraja(24);
+        miBaraja.imprimirBaraja(5);
         
         Baraja miBaraja2 = new Baraja(true);
-        miBaraja2.imprimirBaraja(24);
+        miBaraja2.imprimirBaraja(5);
     }
     
 }

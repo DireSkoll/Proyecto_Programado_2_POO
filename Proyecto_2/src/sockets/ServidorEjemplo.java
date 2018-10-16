@@ -11,13 +11,13 @@ import java.util.logging.Logger;
 public class ServidorEjemplo  {
 
 	public static void main(String[] args) {
-		MarcoServidor mimarco=new MarcoServidor();
+		MarcoServidorEjemplo mimarco=new MarcoServidorEjemplo();
 		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 	}
 }
 
-class MarcoServidor extends JFrame implements Runnable{	
-	public MarcoServidor(){
+class MarcoServidorEjemplo extends JFrame implements Runnable{	
+	public MarcoServidorEjemplo(){
 		setBounds(1200,300,280,350);					
 		JPanel milamina= new JPanel();
 		milamina.setLayout(new BorderLayout());

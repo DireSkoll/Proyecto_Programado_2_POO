@@ -5,9 +5,13 @@
  */
 package UI;
 
+import GUI.CreacionCliente;
+import javax.swing.JFrame;
+
 /**
  *
- * @author Justin
+ * @author Manuel Arias & Justin Bogantes
+ * @since 16/10/18
  */
 public class Game extends javax.swing.JFrame {
 
@@ -93,21 +97,24 @@ public class Game extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jugarActionPerformed
-        // TODO add your handling code here:
-        
+        CreacionCliente ventanaCliente = new CreacionCliente();
+        ventanaCliente.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        ventanaCliente.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jugarActionPerformed
 
     private void ayudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ayudaActionPerformed
         // TODO add your handling code here:
         help obj = new help();
         obj.setVisible(true);
-        
+        dispose();
     }//GEN-LAST:event_ayudaActionPerformed
 
     private void acercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acercaActionPerformed
         // TODO add your handling code here:
         about obj = new about();
         obj.setVisible(true);
+        dispose();
     }//GEN-LAST:event_acercaActionPerformed
 
     /**

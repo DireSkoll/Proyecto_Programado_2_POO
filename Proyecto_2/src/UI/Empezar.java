@@ -5,9 +5,14 @@
  */
 package UI;
 
+import GUI.Mesa;
+import sockets.GameState;
+import sockets.Servidor;
+
 /**
  *
- * @author Justin
+ * @author Manuel Arias & Justin Bogantes
+ * @since 16/10/18
  */
 public class Empezar extends javax.swing.JFrame {
 
@@ -30,42 +35,72 @@ public class Empezar extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        gifCartas = new javax.swing.JLabel();
+        gifVerde = new javax.swing.JLabel();
+        gifRojo1 = new javax.swing.JLabel();
+        gifRojo2 = new javax.swing.JLabel();
+        textoEsperar = new javax.swing.JLabel();
+        avanzarAMesa = new javax.swing.JButton();
+        fondoNegro = new javax.swing.JLabel();
 
         jLabel2.setText(" ");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/juego-de-cartas-y-naipe-imagen-animada-0071.gif"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 260, 200));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-verde.gif"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
+        gifCartas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/juego-de-cartas-y-naipe-imagen-animada-0071.gif"))); // NOI18N
+        jPanel1.add(gifCartas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 260, 200));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
+        gifVerde.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-verde.gif"))); // NOI18N
+        jPanel1.add(gifVerde, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, -1, -1));
+        if (GameState.cantJugadores == 2){
+            gifRojo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-verde.gif"))); // NOI18N
+        } else {
+            gifRojo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif")));
+        }
+        jPanel1.add(gifRojo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
 
-        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel7.setFont(new java.awt.Font("Curlz MT", 3, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Esperando por otros jugadores . . .");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, 50));
+        if ((GameState.cantJugadores) == 3){
+            gifRojo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-verde.gif"))); // NOI18N
+        }else{
+            gifRojo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif")));
+        }
+        jPanel1.add(gifRojo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/fondo2.jpg"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        textoEsperar.setBackground(new java.awt.Color(255, 255, 255));
+        textoEsperar.setFont(new java.awt.Font("Curlz MT", 3, 36)); // NOI18N
+        textoEsperar.setForeground(new java.awt.Color(255, 255, 255));
+        textoEsperar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoEsperar.setText("Esperando por otros jugadores . . .");
+        jPanel1.add(textoEsperar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, 50));
+
+        avanzarAMesa.setText("Avanzar a la mesa");
+        avanzarAMesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avanzarAMesaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(avanzarAMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(841, 20, 140, 40));
+
+        fondoNegro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/fondo2.jpg"))); // NOI18N
+        jPanel1.add(fondoNegro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void avanzarAMesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avanzarAMesaActionPerformed
+        Mesa obj = new Mesa();
+        obj.setVisible(true);
+        dispose();
+        
+        Servidor.repartirCartasIniciales();
+    }//GEN-LAST:event_avanzarAMesaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,12 +138,14 @@ public class Empezar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton avanzarAMesa;
+    private javax.swing.JLabel fondoNegro;
+    private javax.swing.JLabel gifCartas;
+    private javax.swing.JLabel gifRojo1;
+    private javax.swing.JLabel gifRojo2;
+    private javax.swing.JLabel gifVerde;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel textoEsperar;
     // End of variables declaration//GEN-END:variables
 }
