@@ -16,6 +16,8 @@ public class help extends javax.swing.JFrame {
      */
     public help() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -27,21 +29,35 @@ public class help extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        volver1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        volver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/volver.png"))); // NOI18N
+        volver1.setContentAreaFilled(false);
+        volver1.setDefaultCapable(false);
+        volver1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                volver1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(volver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/fondo4.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void volver1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_volver1ActionPerformed
+        // TODO add your handling code here:
+        Game obj = new Game();
+        obj.setVisible(true);
+        dispose();
+
+    }//GEN-LAST:event_volver1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +95,7 @@ public class help extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton volver1;
     // End of variables declaration//GEN-END:variables
 }
