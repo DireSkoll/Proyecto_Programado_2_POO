@@ -5,12 +5,26 @@
  */
 package GUI;
 
+import aplicacion.Programa;
+import cartas.Carta;
+import java.awt.Image;
+import java.awt.List;
+import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Manuel Arias & Justin Bogantes
  * @since 16/10/18
  */
 public class Mesa extends javax.swing.JFrame {
+    
+    private ArrayList<Carta> cartas = new ArrayList();
+    private int total = 0;
+    private int cantidadDeCartas = 0;
+    private boolean ronda = false;
+    private int estado = 0;
 
     /**
      * Creates new form Mesa
@@ -29,11 +43,189 @@ public class Mesa extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        botonSolicitar = new javax.swing.JButton();
+        botonQuedarse = new javax.swing.JButton();
+        fondoInfo = new javax.swing.JPanel();
+        lblJugador = new javax.swing.JLabel();
+        lblCartas = new javax.swing.JLabel();
+        lblPuntaje = new javax.swing.JLabel();
+        fondoCartas = new javax.swing.JPanel();
+        lblCarta1 = new javax.swing.JLabel();
+        lblCarta2 = new javax.swing.JLabel();
+        lblCarta3 = new javax.swing.JLabel();
+        lblCarta4 = new javax.swing.JLabel();
+        lblCarta5 = new javax.swing.JLabel();
+        lblCarta6 = new javax.swing.JLabel();
+        lblCarta7 = new javax.swing.JLabel();
+        lblCarta8 = new javax.swing.JLabel();
+        lblCarta9 = new javax.swing.JLabel();
+        lblCarta10 = new javax.swing.JLabel();
+        lblCarta11 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblRonda = new javax.swing.JLabel();
         fondoMesa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        botonSolicitar.setText("Solicitar Carta");
+        botonSolicitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSolicitarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonSolicitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, 120, 40));
+
+        botonQuedarse.setText("Quedarse");
+        botonQuedarse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonQuedarseActionPerformed(evt);
+            }
+        });
+        jPanel1.add(botonQuedarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 120, 40));
+
+        fondoInfo.setBackground(new java.awt.Color(0, 102, 51));
+        fondoInfo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        lblJugador.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblJugador.setForeground(new java.awt.Color(255, 255, 255));
+        lblJugador.setText("Jugador: ");
+
+        lblCartas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblCartas.setForeground(new java.awt.Color(255, 255, 255));
+        lblCartas.setText("Tamaño de la mano: ");
+
+        lblPuntaje.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblPuntaje.setForeground(new java.awt.Color(255, 255, 255));
+        lblPuntaje.setText("Puntuacion actual: ");
+
+        javax.swing.GroupLayout fondoInfoLayout = new javax.swing.GroupLayout(fondoInfo);
+        fondoInfo.setLayout(fondoInfoLayout);
+        fondoInfoLayout.setHorizontalGroup(
+            fondoInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fondoInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblPuntaje, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCartas, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                    .addComponent(lblJugador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        fondoInfoLayout.setVerticalGroup(
+            fondoInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fondoInfoLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(lblJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCartas, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblPuntaje, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(63, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(fondoInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 210, 200));
+
+        fondoCartas.setBackground(new java.awt.Color(0, 102, 51));
+        fondoCartas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        lblCarta1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        lblCarta2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+
+        lblCarta3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblCarta4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblCarta5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblCarta6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblCarta7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblCarta8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblCarta9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblCarta10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblCarta11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        javax.swing.GroupLayout fondoCartasLayout = new javax.swing.GroupLayout(fondoCartas);
+        fondoCartas.setLayout(fondoCartasLayout);
+        fondoCartasLayout.setHorizontalGroup(
+            fondoCartasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fondoCartasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCarta1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta3, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta4, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta5, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta6, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta7, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta8, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta9, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta10, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblCarta11, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        fondoCartasLayout.setVerticalGroup(
+            fondoCartasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoCartasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(fondoCartasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCarta11, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(lblCarta10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblCarta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel1.add(fondoCartas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, 750, 140));
+
+        jPanel2.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 240, 240)));
+
+        lblRonda.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblRonda.setForeground(new java.awt.Color(255, 255, 255));
+        lblRonda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblRonda, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblRonda, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 200, 70));
 
         fondoMesa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/blackjack.png"))); // NOI18N
         jPanel1.add(fondoMesa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 490));
@@ -52,6 +244,119 @@ public class Mesa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSolicitarActionPerformed
+        if (ronda){
+            ronda();
+            Programa.controladorPrincipal.getClienteNuevo().solicitarCarta();
+        }
+    }//GEN-LAST:event_botonSolicitarActionPerformed
+
+    private void botonQuedarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonQuedarseActionPerformed
+        if (ronda){
+            ronda();
+            Programa.controladorPrincipal.getClienteNuevo().quedarse();
+        }
+    }//GEN-LAST:event_botonQuedarseActionPerformed
+
+    public void ronda(){
+        if (!ronda){
+            ronda = true;
+            lblRonda.setText("ES SU TURNO");
+            botonSolicitar.setEnabled(true);
+            botonQuedarse.setEnabled(true);
+        }
+        else{
+            ronda = false;
+            lblRonda.setText("NO ES SU TURNO");
+            botonSolicitar.setEnabled(false);
+            botonQuedarse.setEnabled(false);
+        }
+    }
+    
+    public void verificar(){
+        if (total > 21){
+            this.setEstado(3);
+        } else {
+            if (total == 21){
+                if (cantidadDeCartas == 2){
+                    this.setEstado(1);
+                } else {
+                    estado = 2;
+                }
+            } else{
+                this.setEstado(0);
+            }
+        }
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+    
+    public void Update(){
+        for (int i = 0; i < cartas.size(); i++){
+            Carta temporal = cartas.get(i);
+            ImageIcon fotoCarta = new ImageIcon("src/Multimedia/Cartas/" + temporal.getMiNumero() + ".png");
+            Icon icono = new ImageIcon(fotoCarta.getImage().getScaledInstance(57, 116, Image.SCALE_DEFAULT));
+            
+            mostrarCarta(i, icono);
+        }
+    }
+    
+    public void agregarCarta(Carta carta){
+        cartas.add(carta);
+        total += carta.getMiNumero();
+        Update();
+    }
+    
+    public void mostrarCarta(int numero, Icon icono){
+        switch (numero) {
+            case 0:
+                lblCarta1.setIcon(icono);
+                break;
+            case 1:
+                lblCarta2.setIcon(icono);
+                break;
+            case 2:
+                lblCarta3.setIcon(icono);
+                break;
+            case 3:
+                lblCarta4.setIcon(icono);
+                break;
+            case 4:
+                lblCarta5.setIcon(icono);
+                break;
+            case 5:
+                lblCarta6.setIcon(icono);
+                break;
+            case 6:
+                lblCarta7.setIcon(icono);
+                break;
+            case 7:
+                lblCarta8.setIcon(icono);
+                break;
+            case 8:
+                lblCarta9.setIcon(icono);
+                break;
+            case 9:
+                lblCarta10.setIcon(icono);
+                break;
+            case 10:
+                lblCarta11.setIcon(icono);
+                break;
+        }
+    }
+    
+    public void LoadVentana(String user){
+        lblJugador.setText("Jugador: " + user);
+        botonSolicitar.setEnabled(false);
+        botonQuedarse.setEnabled(false);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -88,7 +393,27 @@ public class Mesa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonQuedarse;
+    private javax.swing.JButton botonSolicitar;
+    private javax.swing.JPanel fondoCartas;
+    private javax.swing.JPanel fondoInfo;
     private javax.swing.JLabel fondoMesa;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblCarta1;
+    private javax.swing.JLabel lblCarta10;
+    private javax.swing.JLabel lblCarta11;
+    private javax.swing.JLabel lblCarta2;
+    private javax.swing.JLabel lblCarta3;
+    private javax.swing.JLabel lblCarta4;
+    private javax.swing.JLabel lblCarta5;
+    private javax.swing.JLabel lblCarta6;
+    private javax.swing.JLabel lblCarta7;
+    private javax.swing.JLabel lblCarta8;
+    private javax.swing.JLabel lblCarta9;
+    private javax.swing.JLabel lblCartas;
+    private javax.swing.JLabel lblJugador;
+    private javax.swing.JLabel lblPuntaje;
+    private javax.swing.JLabel lblRonda;
     // End of variables declaration//GEN-END:variables
 }

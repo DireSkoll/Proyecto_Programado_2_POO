@@ -10,6 +10,12 @@ public class Carta {
     
     private Categoria miCategoria;
     private int miNumero;
+    private String id;
+    private int valor;
+    
+    public Carta(){
+        
+    }
     
     public Carta(Categoria pCategoria, int pNumero){
         setMiCategoria(pCategoria);
@@ -36,6 +42,22 @@ public class Carta {
 
     public void setMiNumero(int miNumero) {
         this.miNumero = miNumero;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
     }
     
     /**
