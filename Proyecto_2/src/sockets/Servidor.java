@@ -1,9 +1,11 @@
 
 package sockets;
 
+import GUI.VentanaServidor;
 import javax.swing.*;
 import java.awt.*;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
@@ -15,65 +17,88 @@ import usuarios.Jugador;
  *
  * @author Manuel Arias & Justin Bogantes
  * @since 16/10/18
+ * @version 1.1
  */
 public class Servidor {
     
-    public static void main(String[] args) {
-		MarcoServidor mimarco=new MarcoServidor();
-		mimarco.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-	}  
-  
-    public static void repartirCartasIniciales(){
-            GameState.iniciarJuego();
-            System.out.println("Se han repartido 2 cartas a las manos de cada jugador.");
-            System.out.println("Las manos actuales de cada jugador son: ");
-            System.out.println();
-            GameState.jugador1.imprimirMano(true);
-            System.out.println();
-            GameState.jugador2.imprimirMano(true);
-            System.out.println();
-            GameState.jugador3.imprimirMano(true);
-        }
-}
+    private DataInputStream entrada;
+    private DataOutputStream salida;
 
-class MarcoServidor extends JFrame implements Runnable{	
-	public MarcoServidor(){
-		setBounds(1200,300,280,350);					
-		JPanel milamina= new JPanel();
-		milamina.setLayout(new BorderLayout());
-		areatexto=new JTextArea();
-                areatexto.setEnabled(false);
-		milamina.add(areatexto,BorderLayout.CENTER);
-		add(milamina);
-		setVisible(true);
-		Thread miHilo = new Thread(this);
-                miHilo.start();
-	}
-	
-	private	JTextArea areatexto;
-        
-        public void run(){
-            try {
-                ServerSocket servidor = new ServerSocket(7777);
-                while(true){
-                Socket miSocket = servidor.accept();
-                DataInputStream flujo_entrada = new DataInputStream(miSocket.getInputStream());
-                String mensaje = flujo_entrada.readUTF();
-                if (GameState.contador < 3){
-                    Jugador jugador = new Jugador(mensaje);
-                    areatexto.append("\nNuevo Jugador: " + jugador.getNombre());
-                    System.out.println("Jugador Creado con exito!");
-                    GameState.listaJugadores[GameState.contador] = jugador;
-                    GameState.contador++;
-                    GameState.cantJugadores++;
-                } else {
-                    System.out.println("Maxima cantidad de jugadores creados");
-                }
-                miSocket.close();   
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(MarcoServidor.class.getName()).log(Level.SEVERE, null, ex);
-                System.out.println(ex.getMessage());
+    private Socket cliente1;
+    private Socket cliente2;
+    private Socket cliente3;
+
+    private VentanaServidor ventana;
+
+    private HiloServidor hiloServidor;
+    private HiloServidor user2;
+    private HiloServidor user3;
+
+    public Servidor(VentanaServidor entradaVentana) {
+        this.ventana = entradaVentana;
+    }
+
+    public void runServer() {
+        ServerSocket ss;
+        try {
+            ss = new ServerSocket(7778);
+
+            while (true) {
+                cliente1 = ss.accept();
+                System.out.println("Primer Cliente Conectado");
+                EscribirMensajeServidor("Primer Cliente Conectado");
+
+                hiloServidor = new HiloServidor(cliente1, this);
+                hiloServidor.getSalida().writeInt(0);
+                hiloServidor.getSalida().writeInt(1);
+
+                cliente2 = ss.accept();
+                System.out.println("Segundo Cliente Conectado");
+                EscribirMensajeServidor("Segundo Cliente Conectado");
+
+                hiloServidor.asignacionCliente2(cliente2);
+
+                hiloServidor.getSalida2().writeInt(0);
+                hiloServidor.getSalida2().writeInt(2);
+
+                hiloServidor.getSalida().writeInt(1);
+
+                hiloServidor.getSalida().writeInt(2);
+
+                cliente3 = ss.accept();
+                System.out.println("Tercer Cliente Conectado");
+                EscribirMensajeServidor("Tercer Cliente Conectado");
+
+                hiloServidor.asignacionCliente3(cliente3);
+
+                hiloServidor.getSalida3().writeInt(0);
+
+                hiloServidor.getSalida3().writeInt(3);
+
+                hiloServidor.getSalida().writeInt(1);
+
+                hiloServidor.getSalida().writeInt(3);
+
+                hiloServidor.getSalida2().writeInt(1);
+
+                hiloServidor.getSalida2().writeInt(3);
+
+                hiloServidor.getSalida().writeInt(2);
+                hiloServidor.getSalida2().writeInt(2);
+                hiloServidor.getSalida3().writeInt(2);
+
+                hiloServidor.start();
+
+                EscribirMensajeServidor("------------------------");
+                EscribirMensajeServidor("---Inicia la partida!---");
+                EscribirMensajeServidor("------------------------");
             }
-        }    
+        } catch (IOException ex) {
+            System.out.println("Hubo un error, revise el estado del servidor");
+        }
+    }
+
+    public void EscribirMensajeServidor(String entrada) {
+        ventana.agregarMensaje(entrada);
+    }    
 }

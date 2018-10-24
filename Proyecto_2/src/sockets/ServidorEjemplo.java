@@ -40,7 +40,7 @@ class MarcoServidorEjemplo extends JFrame implements Runnable{
                 areatexto.append("\n" + mensaje);
                 miSocket.close();
             } catch (IOException ex) {
-                Logger.getLogger(MarcoServidor.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MarcoServidorEjemplo.class.getName()).log(Level.SEVERE, null, ex);
                 System.out.println(ex.getMessage());
             }
         }
