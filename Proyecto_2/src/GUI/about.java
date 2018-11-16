@@ -33,6 +33,7 @@ public class about extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         regresar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -40,6 +41,8 @@ public class about extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/volver.png"))); // NOI18N
+        regresar.setBorder(null);
+        regresar.setBorderPainted(false);
         regresar.setContentAreaFilled(false);
         regresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -47,6 +50,9 @@ public class about extends javax.swing.JFrame {
             }
         });
         jPanel1.add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/AcercaDe.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/fondo3.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 999, 565));
@@ -112,6 +118,7 @@ public class about extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton regresar;

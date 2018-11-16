@@ -154,10 +154,10 @@ public class HiloServidor extends Thread{
     @Override
     public void run() {
 
-        baraja = new Baraja(true);
+        baraja = new Baraja();
 
         EnviarCartasJugadoresInicio();
-        EnviarCartasJugadoresInicio();
+        EnviarCartasJugadoresInicio(); //Se hace una segunda vez porque el metodo solo reparte 1 carta
 
         int seleccion = 0;
         boolean ganador = false;
@@ -217,11 +217,11 @@ public class HiloServidor extends Thread{
     public void EnviarCartasJugadoresInicio() {
 
         Carta temp;
-        temp = baraja.repartirSiguienteCarta();
+        temp = baraja.popCarta();
         EnviarCartaJugador1(temp);
-        temp = baraja.repartirSiguienteCarta();
+        temp = baraja.popCarta();
         EnviarCartaJugador2(temp);
-        temp = baraja.repartirSiguienteCarta();
+        temp = baraja.popCarta();
         EnviarCartaJugador3(temp);
 
         MensajeServidor("Se envio una carta a todos los Jugadores\n");
@@ -230,7 +230,7 @@ public class HiloServidor extends Thread{
     public void EnviarCartaJugador1(Carta entrada) {
         try {
             salida.writeInt(3);
-            salida.writeUTF(entrada.getId());
+            salida.writeUTF(entrada.getID());
             salida.write(entrada.getValor());
             MensajeServidor("Se envio una carta al Jugador 1\n");
         } catch (IOException ex) {
@@ -242,7 +242,7 @@ public class HiloServidor extends Thread{
     public void EnviarCartaJugador2(Carta entrada) {
         try {
             salida2.writeInt(3);
-            salida2.writeUTF(entrada.getId());
+            salida2.writeUTF(entrada.getID());
             salida2.write(entrada.getValor());
             MensajeServidor("Se envio una carta al Jugador 2\n");
 
@@ -255,7 +255,7 @@ public class HiloServidor extends Thread{
     public void EnviarCartaJugador3(Carta entrada) {
         try {
             salida3.writeInt(3);
-            salida3.writeUTF(entrada.getId());
+            salida3.writeUTF(entrada.getID());
             salida3.write(entrada.getValor());
             MensajeServidor("Se envio una carta al Jugador 3\n");
         } catch (IOException ex) {
@@ -266,7 +266,7 @@ public class HiloServidor extends Thread{
 
     public void EnviarCarta(int Jugador) {
         Carta temp;
-        temp = baraja.repartirSiguienteCarta();
+        temp = baraja.popCarta();
         switch (Jugador) {
             case 1:
                 EnviarCartaJugador1(temp);

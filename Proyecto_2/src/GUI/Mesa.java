@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
 import aplicacion.Programa;
@@ -12,6 +8,7 @@ import java.awt.List;
 import java.util.ArrayList;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -275,21 +272,22 @@ public class Mesa extends javax.swing.JFrame {
     
     public void verificar(){
         if (total > 21){
-            this.setEstado(3);
+            estado = 3;
         } else {
             if (total == 21){
                 if (cantidadDeCartas == 2){
-                    this.setEstado(1);
+                    estado = 1;
                 } else {
                     estado = 2;
                 }
             } else{
-                this.setEstado(0);
+                estado = 0;
             }
         }
     }
 
     public int getEstado() {
+        verificar();
         return estado;
     }
 
@@ -300,16 +298,25 @@ public class Mesa extends javax.swing.JFrame {
     public void Update(){
         for (int i = 0; i < cartas.size(); i++){
             Carta temporal = cartas.get(i);
-            ImageIcon fotoCarta = new ImageIcon("src/Multimedia/Cartas/" + temporal.getMiNumero() + ".png");
+            ImageIcon fotoCarta = new ImageIcon("src/Multimedia/Cartas/" + temporal.getID() + ".jpg");
             Icon icono = new ImageIcon(fotoCarta.getImage().getScaledInstance(57, 116, Image.SCALE_DEFAULT));
             
             mostrarCarta(i, icono);
         }
+        lblCartas.setText("Tamaño de la mano: " + cartas.size());
+
+        lblPuntaje.setText("Puntuacion actual: " + total);
     }
     
     public void agregarCarta(Carta carta){
         cartas.add(carta);
-        total += carta.getMiNumero();
+        int valorCarta = carta.getValor();
+        if (valorCarta == 11) {
+            if (JOptionPane.showConfirmDialog(this, "Desa que el As Valga 1?") == 0) {
+                valorCarta = 1;
+            }
+        }
+        total += valorCarta;
         Update();
     }
     

@@ -13,6 +13,7 @@ import usuarios.Jugador;
 public class PruebaJugador {
     
     public static void main(String args[]){
+        /*
         Scanner sc = new Scanner(System.in);
         Baraja baraja1 = new Baraja(true);
         Jugador jugador1 = new Jugador("Manuel Arias");
@@ -107,6 +108,7 @@ public class PruebaJugador {
         if (sumaJugador3 > sumaJugador1 && sumaJugador3 > sumaJugador2 && sumaJugador3 <= 21){
             System.out.println("El jugador " + jugador3.getNombre() + " ha ganado con una suma de: " + sumaJugador3 + "!");
         }
+*/
     }
     
 }

@@ -2,6 +2,7 @@
 package cartas;
 
 import java.awt.List;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random; //Libreria que utilizaremos para la distribucion de las cartas en la baraja
 
@@ -11,318 +12,263 @@ import java.util.Random; //Libreria que utilizaremos para la distribucion de las
  * @since 14/10/18
  */
 public class Baraja {
-    
-    private Carta[] misCartas;
-    //private List<Carta> cartas;
-    private int numeroCartas;
-    
-    public Baraja(){
-        //Llamaria al otro constructor indicando que no se desea mezclar la baraja
-        this(false);
+
+    private java.util.List<Carta> cartas;
+    /*----------Constructor(es)----------*/
+    public Baraja() {
+        cartas = new ArrayList();
+        GenerarBarajaAleatoria();
     }
-    
+
+    /*----------Setters & Getters----------*/
     /**
-     * 
-     * @param mezclar para indicar si se desea mezclar la baraja
+     * Get de la variable Carta
+     *
+     * @return List
      */
-    public Baraja(boolean mezclar){
-        setNumeroCartas(52);
-        setMisCartas(new Carta[getNumeroCartas()]);
-        
-        //Indice de la carta
-        int i = 0;
-        
-        //Para cada categoria
-        for (int c = 0; c < 4; c++){
-            
-            //Para cada numero
-            for (int n = 1; n <= 13; n++){
-                
-                //agregar una nueva carta a la baraja
-                misCartas[i] = new Carta(Categoria.values()[c], n);
-                i++;
-                
-            }
-        }
-        
-        //Mezclar si es necesario
-        if (mezclar){
-            this.mezclar();
-        }
+    public java.util.List<Carta> getCartas() {
+        return cartas;
     }
-    /*
-    public void generarBarajaAleatoria(){
+
+    /**
+     * Set de la variable Cartas
+     *
+     * @param cartas:List
+     */
+    public void setCartas(java.util.List<Carta> cartas) {
+        this.cartas = cartas;
+    }
+
+    /*----------Metodos Especializados----------*/
+    /**
+     * Metodo encargado de generar una Baraja y ordenarla de manera aleatoria
+     */
+    public void GenerarBarajaAleatoria() {
         for (int i = 1; i <= 52; i++) {
-            misCartas.add(GenerarCarta(i));
+            cartas.add(GenerarCarta(i));
         }
-        Collections.shuffle(misCartas);
+        Collections.shuffle(cartas);
     }
-    */
-    
+
     /**
-     * Mezcla las cartas de la baraja
+     * Metodo encargado de recibir un ID y retornar una carta para la baraja
+     *
+     * @param eID:int
+     * @return Carta
      */
-    public void mezclar(){
-        Random rng = new Random();
-        Carta temp;
-        int j;
-        
-        for (int i = 0; i < getNumeroCartas(); i++){
-            
-            //Escoge una carta al azar y se la asigna a j
-            j = rng.nextInt(getNumeroCartas());
-            
-            //Realiza un intercambio en el orden de las cartas i y j
-            temp = getMisCartas()[i];
-            this.misCartas[i] = this.misCartas[j];
-            this.misCartas[j] = temp;
-        }
-    }
-    
-    /**
-     * 
-     * @return La carta superior en la baraja
-     */
-    public Carta repartirSiguienteCarta(){ 
-        Carta superior = getMisCartas()[0];
-        
-        //Corre todas las cartas una posicion hacia la izquierda en la baraja
-        for (int c = 1; c < getNumeroCartas(); c++){
-            this.misCartas[c-1] = this.misCartas[c];
-        }
-        this.misCartas[getNumeroCartas()-1] = null;
-        setNumeroCartas(getNumeroCartas()-1);
-        
-        return superior;
-    }
-    
-    /**
-     * Imprime las cartas superiores de la baraja
-     * 
-     * @param numeroAImprimir Es el numero de cartas desde la parte superior de la baraja que se desea imprimir
-     */
-    public void imprimirBaraja(int numeroAImprimir){
-        
-        for (int c = 0; c < numeroAImprimir; c++){
-            System.out.printf("% 3d/%d %s\n", c+1, getNumeroCartas(), getMisCartas()[c].toString());
-        }
-        System.out.printf("\t\t[%d otras]\n", getNumeroCartas()-numeroAImprimir);
-        
-    }
-    
     public Carta GenerarCarta(int eID) {
         Carta salida = new Carta();
         switch (eID) {
             /*-----Corazones-----*/
             case 1:
-                salida.setId("C1");
+                salida.setID("C1");
                 salida.setValor(11);
                 break;
             case 2:
-                salida.setId("C2");
+                salida.setID("C2");
                 salida.setValor(2);
                 break;
             case 3:
-                salida.setId("C3");
+                salida.setID("C3");
                 salida.setValor(3);
                 break;
             case 4:
-                salida.setId("C4");
+                salida.setID("C4");
                 salida.setValor(4);
                 break;
             case 5:
-                salida.setId("C5");
+                salida.setID("C5");
                 salida.setValor(5);
                 break;
             case 6:
-                salida.setId("C6");
+                salida.setID("C6");
                 salida.setValor(6);
                 break;
             case 7:
-                salida.setId("C7");
+                salida.setID("C7");
                 salida.setValor(7);
                 break;
             case 8:
-                salida.setId("C8");
+                salida.setID("C8");
                 salida.setValor(8);
                 break;
             case 9:
-                salida.setId("C9");
+                salida.setID("C9");
                 salida.setValor(9);
                 break;
             case 10:
-                salida.setId("C10");
+                salida.setID("C10");
                 salida.setValor(10);
                 break;
             case 11:
-                salida.setId("CJ");
+                salida.setID("CJ");
                 salida.setValor(10);
                 break;
             case 12:
-                salida.setId("CQ");
+                salida.setID("CQ");
                 salida.setValor(10);
                 break;
             case 13:
-                salida.setId("CK");
+                salida.setID("CK");
                 salida.setValor(10);
                 break;
             /*-----Diamantes-----*/
             case 14:
-                salida.setId("D1");
+                salida.setID("D1");
                 salida.setValor(11);
                 break;
             case 15:
-                salida.setId("D2");
+                salida.setID("D2");
                 salida.setValor(2);
                 break;
             case 16:
-                salida.setId("D3");
+                salida.setID("D3");
                 salida.setValor(3);
                 break;
             case 17:
-                salida.setId("D4");
+                salida.setID("D4");
                 salida.setValor(4);
                 break;
             case 18:
-                salida.setId("D5");
+                salida.setID("D5");
                 salida.setValor(5);
                 break;
             case 19:
-                salida.setId("D6");
+                salida.setID("D6");
                 salida.setValor(6);
                 break;
             case 20:
-                salida.setId("D7");
+                salida.setID("D7");
                 salida.setValor(7);
                 break;
             case 21:
-                salida.setId("D8");
+                salida.setID("D8");
                 salida.setValor(8);
                 break;
             case 22:
-                salida.setId("D9");
+                salida.setID("D9");
                 salida.setValor(9);
                 break;
             case 23:
-                salida.setId("D10");
+                salida.setID("D10");
                 salida.setValor(10);
                 break;
             case 24:
-                salida.setId("DJ");
+                salida.setID("DJ");
                 salida.setValor(10);
                 break;
             case 25:
-                salida.setId("DQ");
+                salida.setID("DQ");
                 salida.setValor(10);
                 break;
             case 26:
-                salida.setId("DK");
+                salida.setID("DK");
                 salida.setValor(10);
                 break;
             /*-----Picas-----*/
             case 27:
-                salida.setId("P1");
+                salida.setID("P1");
                 salida.setValor(11);
                 break;
             case 28:
-                salida.setId("P2");
+                salida.setID("P2");
                 salida.setValor(2);
                 break;
             case 29:
-                salida.setId("P3");
+                salida.setID("P3");
                 salida.setValor(3);
                 break;
             case 30:
-                salida.setId("P4");
+                salida.setID("P4");
                 salida.setValor(4);
                 break;
             case 31:
-                salida.setId("P5");
+                salida.setID("P5");
                 salida.setValor(5);
                 break;
             case 32:
-                salida.setId("P6");
+                salida.setID("P6");
                 salida.setValor(6);
                 break;
             case 33:
-                salida.setId("P7");
+                salida.setID("P7");
                 salida.setValor(7);
                 break;
             case 34:
-                salida.setId("P8");
+                salida.setID("P8");
                 salida.setValor(8);
                 break;
             case 35:
-                salida.setId("P9");
+                salida.setID("P9");
                 salida.setValor(9);
                 break;
             case 36:
-                salida.setId("P10");
+                salida.setID("P10");
                 salida.setValor(10);
                 break;
             case 37:
-                salida.setId("PJ");
+                salida.setID("PJ");
                 salida.setValor(10);
                 break;
             case 38:
-                salida.setId("PQ");
+                salida.setID("PQ");
                 salida.setValor(10);
                 break;
             case 39:
-                salida.setId("PK");
+                salida.setID("PK");
                 salida.setValor(10);
                 break;
             /*-----Treboles-----*/
             case 40:
-                salida.setId("T1");
+                salida.setID("T1");
                 salida.setValor(11);
                 break;
             case 41:
-                salida.setId("T2");
+                salida.setID("T2");
                 salida.setValor(2);
                 break;
             case 42:
-                salida.setId("T3");
+                salida.setID("T3");
                 salida.setValor(3);
                 break;
             case 43:
-                salida.setId("T4");
+                salida.setID("T4");
                 salida.setValor(4);
                 break;
             case 44:
-                salida.setId("T5");
+                salida.setID("T5");
                 salida.setValor(5);
                 break;
             case 45:
-                salida.setId("T6");
+                salida.setID("T6");
                 salida.setValor(6);
                 break;
             case 46:
-                salida.setId("T7");
+                salida.setID("T7");
                 salida.setValor(7);
                 break;
             case 47:
-                salida.setId("T8");
+                salida.setID("T8");
                 salida.setValor(8);
                 break;
             case 48:
-                salida.setId("T9");
+                salida.setID("T9");
                 salida.setValor(9);
                 break;
             case 49:
-                salida.setId("T10");
+                salida.setID("T10");
                 salida.setValor(10);
                 break;
             case 50:
-                salida.setId("TJ");
+                salida.setID("TJ");
                 salida.setValor(10);
                 break;
             case 51:
-                salida.setId("TQ");
+                salida.setID("TQ");
                 salida.setValor(10);
                 break;
             case 52:
-                salida.setId("TK");
+                salida.setID("TK");
                 salida.setValor(10);
                 break;
         }
@@ -331,26 +277,29 @@ public class Baraja {
     }
 
     /**
-     * 
-     * @return La lista de cartas que posee la baraja
+     * Override del metodo toString de la clase Baraja
+     *
+     * @return String
      */
-    public Carta[] getMisCartas() {
-        return misCartas;
-    }
-
-    public void setMisCartas(Carta[] misCartas) {
-        this.misCartas = misCartas;
+    @Override
+    public String toString() {
+        String salida = "";
+        for (Carta temp : cartas) {
+            salida += temp.toString() + "\n";
+        }
+        return salida;
     }
 
     /**
+     * Este metodo se encarga de hacer pop a la lista de cartas de la baraja
+     * y retornar la carta que salio de la lista
      * 
-     * @return El numero de cartas que tiene la baraja
+     * @return Carta 
      */
-    public int getNumeroCartas() {
-        return numeroCartas;
-    }
-
-    public void setNumeroCartas(int numeroCartas) {
-        this.numeroCartas = numeroCartas;
+    public Carta popCarta() {
+        Carta salida;
+        salida = cartas.get(1);
+        cartas.remove(1);
+        return salida;
     }
 }

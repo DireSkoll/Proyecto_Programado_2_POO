@@ -45,16 +45,16 @@ public class Servidor {
 
             while (true) {
                 cliente1 = ss.accept();
-                System.out.println("Primer Cliente Conectado");
-                EscribirMensajeServidor("Primer Cliente Conectado");
+                System.out.println("Se ha conectado el primer jugador!");
+                EscribirMensajeServidor("Se ha conectado el primer jugador!");
 
                 hiloServidor = new HiloServidor(cliente1, this);
                 hiloServidor.getSalida().writeInt(0);
                 hiloServidor.getSalida().writeInt(1);
 
                 cliente2 = ss.accept();
-                System.out.println("Segundo Cliente Conectado");
-                EscribirMensajeServidor("Segundo Cliente Conectado");
+                System.out.println("Se ha conectado el segundo jugador!");
+                EscribirMensajeServidor("Se ha conectado el segundo jugador!");
 
                 hiloServidor.asignacionCliente2(cliente2);
 
@@ -66,8 +66,8 @@ public class Servidor {
                 hiloServidor.getSalida().writeInt(2);
 
                 cliente3 = ss.accept();
-                System.out.println("Tercer Cliente Conectado");
-                EscribirMensajeServidor("Tercer Cliente Conectado");
+                System.out.println("Se ha conectado el tercer jugador!");
+                EscribirMensajeServidor("Se ha conectado el tercer jugador!");
 
                 hiloServidor.asignacionCliente3(cliente3);
 
@@ -90,7 +90,7 @@ public class Servidor {
                 hiloServidor.start();
 
                 EscribirMensajeServidor("------------------------");
-                EscribirMensajeServidor("---Inicia la partida!---");
+                EscribirMensajeServidor("---------Inicio---------");
                 EscribirMensajeServidor("------------------------");
             }
         } catch (IOException ex) {
