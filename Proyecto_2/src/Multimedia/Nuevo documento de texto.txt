@@ -1,0 +1,23 @@
+Acerca De:
+
+Proyecto desarrollado por Manuel Arias & Justin Bogantes.
+Curso de POO, II Semestre 2018.
+
+Especificaciones:
+
+Este blackjack permite que participen 3 jugadores, cada jugador solo debe ingresar su nombre. Si algun jugador decide no hacerlo su nombre aparecera en blanco.
+El juego dara inicio automaticamente 3 segundos despues de que se conecten los 3.
+Al terminar la partida, a cada jugador se le informara de si gano, perdio o empato, y luego el servidor reiniciara la partida para todos los jugadores automaticamente.
+El as tendra un valor de 1 o 11, y se definira apenas el jugador reciba una de estas cartas.
+Una vez que un jugador se haya pasado de 21, no podra jugar mas.
+
+
+
+
+Ayuda:
+
+Introduzca su nombre en la barra principal para dar comienzo al juego.
+Si no ingresa un nombre, la partida iniciara al darle "Jugar" y le asignara un nombre en blanco.
+
+
+
