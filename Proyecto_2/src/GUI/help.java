@@ -32,12 +32,15 @@ public class help extends javax.swing.JFrame {
     private void initComponents() {
 
         volver1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         volver1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/volver.png"))); // NOI18N
+        volver1.setBorder(null);
+        volver1.setBorderPainted(false);
         volver1.setContentAreaFilled(false);
         volver1.setDefaultCapable(false);
         volver1.addActionListener(new java.awt.event.ActionListener() {
@@ -46,6 +49,9 @@ public class help extends javax.swing.JFrame {
             }
         });
         getContentPane().add(volver1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/Ayuda.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/fondo4.jpg"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1100, 690));
@@ -97,6 +103,7 @@ public class help extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JButton volver1;
     // End of variables declaration//GEN-END:variables

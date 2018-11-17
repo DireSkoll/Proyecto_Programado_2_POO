@@ -60,7 +60,7 @@ public class Jugador {
         //Calcula la contribucion de cada carta a la suma
         for (int c = 0; c < getNumeroCartasEnMano(); c++){
             //Consigue el numero de la carta actual
-            numeroCarta = getMano()[c].getMiNumero();
+            numeroCarta = 1;//getMano()[c].getMiNumero();
             
             if (numeroCarta == 1) { //As
                 numeroAses++;

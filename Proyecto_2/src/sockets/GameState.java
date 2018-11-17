@@ -10,6 +10,7 @@ import usuarios.Jugador;
  * @since 16/10/18
  */
 public class GameState {
+    /*
     public static Jugador[] listaJugadores = new Jugador[3];
     public static int contador = 0;
     public static int contadorJA = 1;
@@ -30,4 +31,5 @@ public class GameState {
         jugador2.agregarCarta(baraja1.repartirSiguienteCarta());
         jugador3.agregarCarta(baraja1.repartirSiguienteCarta());    
     } 
+*/
 }

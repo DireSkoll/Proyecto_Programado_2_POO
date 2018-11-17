@@ -41,7 +41,7 @@ public class VentanaCierre extends javax.swing.JFrame {
         lblEstado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblEstado.setForeground(new java.awt.Color(255, 255, 255));
         lblEstado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 124, 390, 150));
+        jPanel1.add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 60, 390, 150));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

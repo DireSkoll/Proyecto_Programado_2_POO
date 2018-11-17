@@ -17,19 +17,19 @@ import java.util.logging.Logger;
  */
 public class HiloCliente extends Thread{
     
-    private Cliente cliente = null;
+    private Cliente cliente;
     private int numJugadores;
     private boolean ejecutando = true;
-    private DataOutputStream flujo_salida = null;
-    private DataInputStream flujo_entrada = null;
+    private DataOutputStream flujo_salida;
+    private DataInputStream flujo_entrada;
     
     public HiloCliente(){
     }
     
     public HiloCliente(DataInputStream entrada, Cliente cliente, DataOutputStream salida){
-        this.setFlujo_entrada(entrada);
-        this.setCliente(cliente);
-        this.setFlujo_salida(salida);
+        setFlujo_entrada(entrada);
+        setCliente(cliente);
+        setFlujo_salida(salida);
     }
     
     public void run() {
@@ -37,15 +37,15 @@ public class HiloCliente extends Thread{
 
         while (ejecutando) {
             try {
-                opcion = this.getFlujo_entrada().readInt();
+                opcion = flujo_entrada.readInt();
                 switch (opcion) {
                     case 0:
-                        numJugadores = this.getFlujo_entrada().readInt();
+                        numJugadores = flujo_entrada.readInt();
                         cliente.getControlador().abrirVentanaDeEspera(numJugadores);
                         break;
    
                     case 1:
-                        int temporal = this.getFlujo_entrada().readInt();
+                        int temporal = flujo_entrada.readInt();
                         cliente.getControlador().actualizarVentanaDeEspera(temporal);
                         break;
 
@@ -56,7 +56,7 @@ public class HiloCliente extends Thread{
                     
                     case 3:
                         Carta nuevaCarta = new Carta();
-                        nuevaCarta.setId(flujo_entrada.readUTF());
+                        nuevaCarta.setID(flujo_entrada.readUTF());
                         nuevaCarta.setValor(flujo_entrada.read());
                         System.out.println(nuevaCarta.toString());
                         cliente.getControlador().agregarCarta(nuevaCarta);
@@ -66,16 +66,12 @@ public class HiloCliente extends Thread{
                         cliente.getControlador().elegirRonda();
                         break;
                         
-                    case 5:
-                        cliente.enviarEstado();
-                        break;
-                    
                     case 6:
-                            cliente.verificarEstado();
+                        cliente.verificarEstado();
                         break;
                     
                     case 7:
-                        int finalJuego=this.getFlujo_entrada().readInt();
+                        int finalJuego = flujo_entrada.readInt();
                         cliente.getControlador().abrirVentanaCierre(finalJuego);
                         sleep(5000);
                         cliente.getControlador().resetear();

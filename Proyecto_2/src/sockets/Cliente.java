@@ -79,7 +79,7 @@ public class Cliente {
     
     public void verificarEstado() {
         try {
-            switch(Programa.controladorPrincipal.getVentanaDeJuego().getEstado()){
+            switch(controladorPrincipal.getVentanaDeJuego().getEstado()){
                 case 0:
                     flujo_salida.write(0);
                     break;

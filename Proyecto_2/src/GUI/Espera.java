@@ -40,10 +40,10 @@ public class Espera extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         gifCartas = new javax.swing.JLabel();
+        textoEsperar = new javax.swing.JLabel();
         gifRojo = new javax.swing.JLabel();
         gifRojo2 = new javax.swing.JLabel();
         gifRojo3 = new javax.swing.JLabel();
-        textoEsperar = new javax.swing.JLabel();
         fondoNegro = new javax.swing.JLabel();
 
         jLabel2.setText(" ");
@@ -56,29 +56,21 @@ public class Espera extends javax.swing.JFrame {
         gifCartas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/juego-de-cartas-y-naipe-imagen-animada-0071.gif"))); // NOI18N
         jPanel1.add(gifCartas, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 260, 200));
 
-        gifRojo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif"))); // NOI18N
-        jPanel1.add(gifRojo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 310, -1, -1));
-
-        if (GameState.cantJugadores == 2){
-            gifRojo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif"))); // NOI18N
-        } else {
-            gifRojo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif")));
-        }
-        jPanel1.add(gifRojo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 320, -1, -1));
-
-        if ((GameState.cantJugadores) == 3){
-            gifRojo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif"))); // NOI18N
-        }else{
-            gifRojo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif")));
-        }
-        jPanel1.add(gifRojo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 330, -1, -1));
-
         textoEsperar.setBackground(new java.awt.Color(255, 255, 255));
         textoEsperar.setFont(new java.awt.Font("Curlz MT", 3, 36)); // NOI18N
         textoEsperar.setForeground(new java.awt.Color(255, 255, 255));
         textoEsperar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoEsperar.setText("Esperando por otros jugadores . . .");
         jPanel1.add(textoEsperar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, 50));
+
+        gifRojo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif"))); // NOI18N
+        jPanel1.add(gifRojo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 200, 180));
+
+        gifRojo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif"))); // NOI18N
+        jPanel1.add(gifRojo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 190, 180));
+
+        gifRojo3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/loading-rojo.gif"))); // NOI18N
+        jPanel1.add(gifRojo3, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 300, 180, 190));
 
         fondoNegro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Multimedia/fondo2.jpg"))); // NOI18N
         jPanel1.add(fondoNegro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -147,20 +139,20 @@ public class Espera extends javax.swing.JFrame {
     }
     
     public void LoadJugador(){
-        ImageIcon foto = new ImageIcon("scr/Multimedia/loading-rojo.gif");
+        ImageIcon foto = new ImageIcon("scr/Multimedia/loading-verde.gif");
         Icon icono = new ImageIcon(foto.getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
         gifRojo.setIcon(icono);
     }
     
     public void LoadJugador2(){
-        ImageIcon foto = new ImageIcon("scr/Multimedia/loading-rojo.gif");
+        ImageIcon foto = new ImageIcon("scr/Multimedia/loading-verde.gif");
         Icon icono = new ImageIcon(foto.getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
         gifRojo.setIcon(icono);
         gifRojo2.setIcon(icono);
     }
     
     public void LoadJugador3(){
-        ImageIcon foto = new ImageIcon("scr/Multimedia/loading-rojo.gif");
+        ImageIcon foto = new ImageIcon("scr/Multimedia/loading-verde.gif");
         Icon icono = new ImageIcon(foto.getImage().getScaledInstance(40,40, Image.SCALE_DEFAULT));
         gifRojo.setIcon(icono);
         gifRojo2.setIcon(icono);
